@@ -117,8 +117,10 @@ def main():
                 )
                 traces, info = parse_tracing(content, ids)
                 if info["parse_error"] or info["missing"] == len(ids):
+                    # Greedy decoding would repeat the same failure, so the retry samples.
                     content, stats = llm.chat(
-                        messages, model=args.model, seed=100 + run, num_ctx=args.num_ctx
+                        messages, model=args.model, seed=100 + run, num_ctx=args.num_ctx,
+                        temperature=0.4,
                     )
                     traces, info = parse_tracing(content, ids)
                     info["retried"] = True

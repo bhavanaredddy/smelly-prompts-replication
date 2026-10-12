@@ -1,0 +1,9 @@
+{
+  "stats": {
+    "seconds": 47.6,
+    "prompt_tokens": 721,
+    "output_tokens": 376,
+    "done_reason": "stop"
+  },
+  "raw": "{\"requirements\": [\n  {\"id\": 1, \"smelly\": false, \"smell_types\": []},\n  {\"id\": 2, \"smelly\": false, \"smell_types\": []},\n  {\"id\": 3, \"smelly\": false, \"smell_types\": []},\n  {\"id\": 4, \"smelly\": true, \"smell_types\": [\"weak_verbs\", \"logical_inconsistencies\"]},\n  {\"id\": 5, \"smelly\": false, \"smell_types\": []},\n  {\"id\": 6, \"smelly\": true, \"smell_types\": [\"logical_inconsistencies\", \"numerical_discrepancies\"]},\n  {\"id\": 7, \"smelly\": true, \"smell_types\": [\"logical_inconsistencies\", \"subjective_language\"]},\n  {\"id\": 8, \"smelly\": false, \"smell_types\": []},\n  {\"id\": 9, \"smelly\": false, \"smell_types\": []},\n  {\"id\": 10, \"smelly\": true, \"smell_types\": [\"logical_inconsistencies\", \"subjective_language\"]},\n  {\"id\": 11, \"smelly\": true, \"smell_types\": [\"subjective_language\", \"logical_inconsistencies\"]},\n  {\"id\": 12, \"smelly\": true, \"smell_types\": [\"logical_inconsistencies\", \"subjective_language\"]},\n  {\"id\": 13, \"smelly\": true, \"smell_types\": [\"logical_inconsistencies\", \"subjective_language\"]},\n  {\"id\": 14, \"smelly\": true, \"smell_types\": [\"logical_inconsistencies\", \"subjective_language\"]}\n]}"
+}

@@ -18,11 +18,13 @@ Total cost: $0.
    inconsistencies lower F1 for both models (CIs exclude 0).
 4. **The paper's RQ3 table is computed incorrectly** (it mixes smelly and clean versions of
    the same requirement). Corrected, the category differences are larger than published.
-5. **A rule-based detector finds 81 % of smelly requirements** but also flags 47 % of clean ones.
-6. **Smell fixer (local Llama 3.2 3B, no code shown):** when it may decide itself, it changes
-   almost nothing (1 of 33 smelly requirements). When forced to rewrite everything, it
-   removes surface smells but cannot restore missing facts and sometimes mixes requirements
-   up. Tracing results with fixed requirements: see section 6 (filled in by the pipeline).
+5. **A rule-based detector beats a free 3B LLM** at finding smells (F1 0.63 vs. 0.45), but
+   neither finds the semantic smells that matter.
+6. **Smell fixer (local Llama 3.2 3B, no code shown):** fixing the known smelly requirements
+   recovers **59 % of the line-level F1 lost to smells** (+0.055, CI +0.014 to +0.10), even
+   though the small model changed only a quarter of them. Rewriting everything blindly
+   recovers 39 % (not significant). The yes/no decision cannot improve with this model
+   because it answers "implemented" 97-98 % of the time regardless.
 
 ---
 
@@ -161,35 +163,67 @@ most affected game (-0.20 for both models).
 | Detector | Precision | Recall | F1 | Type correct | Category correct |
 | --- | --- | --- | --- | --- | --- |
 | Rule-based word lists (`src/smellrep/rules.py`) | 0.51 | 0.81 | 0.63 | 0.56 | 0.65 |
-| LLM (llama3.2:3b) | filled in by the pipeline (`results/D_detector/README.md`) | | | | |
+| LLM (llama3.2:3b, whole list per prompt) | 0.60 | 0.36 | 0.45 | 0.14 | 0.24 |
 
 The rule-based detector catches every passive voice, negative, vague pronoun and weak-verb
 smell, but never identifies a logical inconsistency and only 20-40 % of ambiguities and
 numerical discrepancies. Those are the semantic smells that matter most (section 3).
+The 3B LLM is more cautious (fewer false alarms) but misses most smells and rarely names
+the right type; it finds 38 % of logical inconsistencies, where rules find none. A larger
+local model (`-Model llama3.1:8b`) is the obvious next free step.
 
 ## 6. Fresh runs with a free local model + smell fixer
 
-`results/C_local_and_fixer/` (written automatically when `scripts/run_local_pipeline.ps1`
-finishes; takes about 1.5 h on this laptop's CPU).
+`results/C_local_and_fixer/`. 20 tracing runs with `llama3.2:3b` on a laptop CPU (about
+1.5 h; 5 games x 4 conditions, temperature 0, so one run per condition is deterministic).
+The prompt is byte-for-byte the authors' prompt. One run (scopa, rewritten requirements)
+looped until the output limit and was redone with a sampled retry.
 
-Done so far:
-- The authors' exact prompt works with `llama3.2:3b`: scopa, clean requirements, yes/no
-  accuracy 0.875 but line F1 only 0.26 (GPT-4o: 0.74). The small model answers
-  "implemented" for almost everything.
-- **Fixer, blind mode** (decides itself what to fix): changed 1 of 33 smelly requirements
-  in the first two games. It does not recognise its own input as smelly.
-- **Fixer, rewrite mode** (rewrite everything as "shall" statements): removes weak verbs,
-  optional parts and passive voice (e.g. "If needed, the system can print..." becomes "The
-  system shall print..."). It cannot restore facts missing from the smelly text
-  ("significantly more points" stays vague instead of "10 more points") and in a few cases
-  rewrites one requirement into another's content.
-- **Fixer, oracle mode** (told which requirements are smelly) and the tracing runs for clean
-  / smelly / fixed-rewrite / fixed-oracle are running.
+**Tracing results on the 72 smell-able requirements**, scored against the original intent
+(GPT-4o and Llama-70B rows are the authors' saved no-smell / all-smell runs):
 
-Expected, based on sections 3-4: a fixer can only help with the label-flip requirements by
-*removing the contradiction*. That turns them back into implementable requirements, which
-matches the original intent but no longer matches the dataset's "not traceable" label.
-Report both scores.
+| Model | Condition | Yes/no accuracy | Line F1 | Says "implemented" |
+| --- | --- | --- | --- | --- |
+| GPT-4o | clean | 0.96 | 0.70 | 74 % |
+| GPT-4o | smelly | 0.90 | 0.59 | 70 % |
+| Llama-3.1-70B | clean | 0.94 | 0.61 | 71 % |
+| Llama-3.1-70B | smelly | 0.88 | 0.54 | 68 % |
+| Llama-3.2-3B | clean | 0.68 | 0.21 | 98 % |
+| Llama-3.2-3B | smelly | 0.68 | **0.11** | 98 % |
+| Llama-3.2-3B | fixed (rewrite all) | 0.71 | 0.15 | 97 % |
+| Llama-3.2-3B | fixed (oracle) | 0.68 | **0.17** | 98 % |
+
+**Did fixing recover the loss?** (bootstrap over requirements)
+
+| Fixer | Line F1 change vs. smelly | 95 % CI | Share of the smell-induced loss recovered |
+| --- | --- | --- | --- |
+| rewrite all (no hint) | +0.036 | -0.044 to +0.115 | 39 % (not significant) |
+| oracle (told which are smelly) | **+0.055** | **+0.014 to +0.101** | **59 %** |
+
+**Fixer text quality** (72 smelly requirements; "drifted" = rewrite matches a *different*
+requirement better than its own):
+
+| Mode | Changed | Rule-detector flags before -> after | Drifted |
+| --- | --- | --- | --- |
+| blind (decides itself) | 6 % | 1.22 -> 1.22 | 3 % |
+| oracle (told which + type) | 25 % | 1.22 -> 1.11 | 3 % |
+| rewrite all | 97 % | 1.22 -> 0.64 | 10 % |
+
+Takeaways:
+- The 3B model says "implemented" for 97-98 % of requirements in every condition, so its
+  yes/no accuracy just equals the share of implemented requirements; it carries no signal.
+  Its line tracing does respond to smells: **smells almost halve its F1 (0.21 -> 0.11)**,
+  a larger relative loss than GPT-4o's (0.70 -> 0.59).
+- Telling the fixer which requirements are smelly recovers 59 % of that loss, although it
+  rewrote only 18 of the 72 (the 3B model often copied the input even when told it was
+  smelly). Blind rewriting removes about half of the surface smells but also introduces
+  drift (10 %) and recovers less.
+- Neither fixer can restore facts that the smell removed (e.g. "significantly more
+  points" instead of "10 more points"), because it never sees the code. This caps what
+  requirement-only fixing can achieve.
+- Result size: one deterministic run per condition and 72 requirements; the oracle-fixer
+  gain is significant, the rest are suggestive. Re-running with `-Model llama3.1:8b` is
+  free and would test whether a stronger fixer recovers more.
 
 ## 7. Limitations
 
@@ -209,5 +243,8 @@ Report both scores.
 4. Better statistics show the drop is concentrated in 10 requirements whose smell makes them
    untraceable; models trace them anyway. Elsewhere GPT-4o is not affected.
 5. Ambiguity is the most harmful smell; semantic smells degrade *line* precision.
-6. Detector and fixer: surface smells are easy to detect and fix for free; the harmful
-   semantic smells are not.
+6. Detector: word lists find surface smells (F1 0.63) better than a free 3B LLM (0.45);
+   neither finds contradictions reliably.
+7. Fixer: fixing the known smelly requirements recovers 59 % of the line-tracing loss for
+   a free local model; blind rewriting recovers 39 % (not significant). Honest limit:
+   a fixer without the code cannot restore facts the smell removed.
