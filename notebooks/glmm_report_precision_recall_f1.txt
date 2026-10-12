@@ -1,0 +1,78 @@
+=============================
+Summary for model: precision
+=============================
+                 Mixed Linear Model Regression Results
+========================================================================
+Model:                   MixedLM      Dependent Variable:      precision
+No. Observations:        1220         Method:                  REML     
+No. Groups:              5            Scale:                   0.0011   
+Min. group size:         244          Log-Likelihood:          2380.1576
+Max. group size:         244          Converged:               No       
+Mean group size:         244.0                                          
+------------------------------------------------------------------------
+                              Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+------------------------------------------------------------------------
+Intercept                      0.655    0.029 22.425 0.000  0.598  0.712
+percentage_smelly             -0.000    0.007 -0.038 0.970 -0.014  0.014
+Group Var                      0.003    0.084                           
+Group x percentage_smelly Cov  0.000    0.035                           
+percentage_smelly Var          0.000                                    
+model Var                      0.002    0.067                           
+========================================================================
+
+--- Likelihood Ratio Test ---
+LR Test Stat: 2230.7154094263788
+p-value: 0.0
+
+=============================
+Summary for model: recall
+=============================
+                 Mixed Linear Model Regression Results
+========================================================================
+Model:                   MixedLM      Dependent Variable:      recall   
+No. Observations:        1220         Method:                  REML     
+No. Groups:              5            Scale:                   0.0016   
+Min. group size:         244          Log-Likelihood:          2131.7481
+Max. group size:         244          Converged:               Yes      
+Mean group size:         244.0                                          
+------------------------------------------------------------------------
+                              Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+------------------------------------------------------------------------
+Intercept                      0.753    0.021 36.630 0.000  0.713  0.793
+percentage_smelly             -0.001    0.000 -1.540 0.123 -0.001  0.000
+Group Var                      0.000    0.050                           
+Group x percentage_smelly Cov  0.000    0.001                           
+percentage_smelly Var          0.000    0.000                           
+model Var                      0.004    0.063                           
+========================================================================
+
+--- Likelihood Ratio Test ---
+LR Test Stat: 1634.8256172883393
+p-value: 0.0
+
+=============================
+Summary for model: f1
+=============================
+                 Mixed Linear Model Regression Results
+========================================================================
+Model:                   MixedLM      Dependent Variable:      f1       
+No. Observations:        1220         Method:                  REML     
+No. Groups:              5            Scale:                   0.0010   
+Min. group size:         244          Log-Likelihood:          2450.0906
+Max. group size:         244          Converged:               Yes      
+Mean group size:         244.0                                          
+------------------------------------------------------------------------
+                              Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+------------------------------------------------------------------------
+Intercept                      0.648    0.032 19.993 0.000  0.585  0.712
+percentage_smelly             -0.001    0.000 -1.843 0.065 -0.001  0.000
+Group Var                      0.002    0.459                           
+Group x percentage_smelly Cov  0.000    0.002                           
+percentage_smelly Var          0.000    0.000                           
+model Var                      0.006                                    
+========================================================================
+
+--- Likelihood Ratio Test ---
+LR Test Stat: 2067.9661095598076
+p-value: 0.0
+

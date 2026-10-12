@@ -1,0 +1,72 @@
+from experiments import experiments_def
+from req_smell_tracing.experiment import Experiment
+from req_smell_tracing.game import Game
+from req_smell_tracing.result import Result
+from req_smell_tracing.workflow import Phase
+
+
+def def_workflow(workflow, args):
+    with Phase("init", workflow) as phase:
+        phase.add("load_games", Game.load_games, to_context="games")
+        phase.add(
+            "read_experiments",
+            Experiment.read_experiments,
+            experiments_defs=[experiments_def.def_experiments],
+            to_context="experiments",
+        )
+
+    with Phase("run", workflow) as phase:
+        BATCH = True
+
+        phase.add(
+            "run_experiments",
+            Experiment.run_experiments,
+            to_context="results_experiments",
+            batch=BATCH,
+        )
+
+        phase.add(
+            "save_experiments", Experiment.save_experiments, file="experiments.json"
+        )
+
+        if not BATCH:
+            phase.add("load_results", Result.load_results, to_context="results")
+
+            phase.add(
+                "save_all_results",
+                Result.save_results_single_file,
+                file="results_all.json",
+            )
+
+    with Phase("load", workflow) as phase:
+        phase.add(
+            "load_results",
+            Result.load_results,
+            to_context="results",
+            load_groups=[args.group] if args.group else None,
+        )
+
+    with Phase("load_batch", workflow) as phase:
+        phase.add("load_games", Game.load_games, to_context="games")
+        phase.add(
+            "load_experiments",
+            Experiment.load_experiments,
+            file="experiments.json",
+            to_context="experiments",
+        )
+
+        phase.add(
+            "load_batch_results",
+            Result.load_batch_results,
+            to_context="results",
+            file="batch_results.jsonl",
+        )
+
+        phase.add(
+            "save_all_results",
+            Result.save_results_single_file,
+            file="results_all.json",
+        )
+
+    workflow.command("run", ["init", "run"])
+    workflow.command("batchtoresults", ["load_batch"])

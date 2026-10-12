@@ -1,0 +1,95 @@
+game,requirement_id,smell_type,smell_category,implemented,lines,smelly_traceable
+dice_game,1,,,yes,30,
+dice_game,2,,,yes,21,
+dice_game,3,,,yes,"42, 43, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 59, 60, 61, 62, 64, 65, 66, 67, 69, 70, 72, 73, 75, 76, 79",
+dice_game,4,,,yes,"51, 56",
+dice_game,5,,,yes,60,
+dice_game,6,,,yes,64,
+dice_game,7,,,yes,"4, 47",
+dice_game,8,subjective_language,lexical,yes,"5, 101, 108, 109, 110, 111, 112, 113, 114, 115, 116, 119, 120, 124",yes
+dice_game,9,passive_voice,syntactic,yes,"52, 53, 54, 55, 56",yes
+dice_game,10,ambiguities,semantic,yes,"65, 66, 67",yes
+dice_game,11,logical_inconsistencies,semantic,yes,"38, 39, 86, 87",yes
+dice_game,12,subjective_language,lexical,yes,"6, 61, 62",yes
+dice_game,13,negative,syntactic,yes,"69, 70",no
+dice_game,14,numerical_discrepancies,semantic,yes,"59, 90, 91, 92, 93, 94, 96",yes
+dice_game,15,vague_pronouns,syntactic,yes,"72, 73, 127, 128, 129",yes
+dice_game,16,passive_voice,syntactic,yes,"42, 43",yes
+dice_game,17,passive_voice,syntactic,yes,"32, 33, 34, 35, 36",yes
+dice_game,18,subjective_language,lexical,no,,no
+dice_game,19,logical_inconsistencies,semantic,no,,no
+dice_game,20,weak_verbs,lexical,no,,no
+dice_game,21,subjective_language,lexical,no,,no
+dice_game,22,negative,syntactic,no,,no
+dice_game,23,optional_parts,lexical,yes,"66, 83",yes
+dice_game,24,ambiguities,semantic,yes,"82, 132, 133, 134, 135, 136, 139",no
+dice_game,25,subjective_language,lexical,no,,no
+arkanoid,1,,,yes,"6, 116",
+arkanoid,2,,,yes,"7, 8, 88, 89",
+arkanoid,3,,,yes,"9, 10, 11, 40, 68, 69",
+arkanoid,4,,,yes,"37, 38, 39, 110, 143",
+arkanoid,5,vague_pronouns,syntactic,yes,"117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 129, 130, 131, 132",yes
+arkanoid,6,ambiguities,semantic,yes,"135, 136",yes
+arkanoid,7,weak_verbs,lexical,yes,"19, 20, 21, 22, 23, 65, 66, 67, 68, 69, 70, 71",yes
+arkanoid,8,numerical_discrepancies,semantic,yes,"19, 20, 21, 22, 23, 65, 66, 67, 68, 69, 70",no
+arkanoid,9,logical_inconsistencies,semantic,no,,no
+arkanoid,10,ambiguities,semantic,yes,"94, 95",yes
+arkanoid,11,negative,syntactic,yes,"74, 117, 119, 120, 121, 123, 124, 125",yes
+arkanoid,12,subjective_language,lexical,yes,"43, 44, 45, 47, 48, 49, 50, 51, 52, 129, 131, 132",yes
+arkanoid,13,subjective_language,lexical,no,,no
+arkanoid,14,logical_inconsistencies,semantic,yes,"98, 99, 100, 101, 144",no
+arkanoid,15,passive_voice,syntactic,yes,"92, 93, 94, 95, 98, 99, 100, 101",yes
+arkanoid,16,passive_voice,syntactic,yes,"12, 17, 112",yes
+arkanoid,17,logical_inconsistencies,semantic,no,,no
+arkanoid,18,optional_parts,lexical,no,116,no
+arkanoid,19,ambiguities,semantic,no,,no
+snake,1,,,yes,"88, 89, 90, 91, 92, 97, 129, 130, 58, 59, 60, 61, 120",
+snake,2,,,yes,"58, 59, 60, 61, 120, 121, 122",
+snake,3,,,yes,"58, 59, 60, 61, 120, 121, 122",
+snake,4,negative,syntactic,no,,no
+snake,5,passive_voice,syntactic,yes,"64, 65, 67, 68, 70, 71, 75, 125, 126",yes
+snake,6,subjective_language,lexical,no,"6, 81, 82, 83, 84, 85",no
+snake,7,vague_pronouns,syntactic,yes,"30, 31, 33, 34, 35, 36, 37, 78, 79, 81, 82, 85, 106",yes
+snake,8,weak_verbs,lexical,yes,"8, 9, 10, 11, 12, 43, 44, 45, 46, 47, 48, 49, 50, 108, 110, 111, 112, 113, 114, 115, 116, 117",no
+snake,9,ambiguities,semantic,yes,122,yes
+snake,10,numerical_discrepancies,semantic,no,,no
+snake,11,ambiguities,semantic,no,,no
+snake,12,subjective_language,lexical,no,,no
+snake,13,optional_parts,lexical,no,,no
+snake,14,logical_inconsistencies,semantic,no,,no
+scopa,1,,,yes,"10, 49, 50, 51, 52",
+scopa,2,,,yes,53,
+scopa,3,,,yes,"188, 189",
+scopa,4,logical_inconsistencies,semantic,yes,"7, 8, 74, 75, 76",no
+scopa,5,numerical_discrepancies,semantic,yes,"7, 8, 74, 75, 76",no
+scopa,6,ambiguities,semantic,yes,"207, 208, 209",yes
+scopa,7,subjective_language,lexical,yes,"197, 198, 200, 201, 204, 206, 207, 208, 209",yes
+scopa,8,ambiguities,semantic,yes,"55, 57, 58, 59, 60, 64, 65, 66, 67, 68",yes
+scopa,9,passive_voice,syntactic,yes,"27, 28, 30, 31, 32, 34, 164",yes
+scopa,10,vague_pronouns,syntactic,yes,"83, 84, 85, 86, 88, 89, 91, 92, 93, 97, 98, 101, 102, 103, 105, 106, 107, 108, 112, 163, 164, 165, 167, 168, 169",yes
+scopa,11,passive_voice,syntactic,yes,"83, 84, 85, 86, 88, 89, 91, 92, 93, 97, 98, 101, 102, 103, 105, 106, 107, 108, 112, 163, 164, 165, 167, 168, 169",yes
+scopa,12,ambiguities,semantic,no,,no
+scopa,13,weak_verbs,lexical,yes,"172, 173, 175, 176, 177, 180, 181, 182, 184",yes
+scopa,14,weak_verbs,lexical,yes,"180, 181, 182, 184, 185, 200, 201",yes
+scopa,15,ambiguities,semantic,yes,"200, 201, 204, 206, 207, 208, 209",no
+scopa,16,subjective_language,lexical,yes,"204, 115, 116, 117, 118, 119, 120, 121, 122, 124, 125, 126, 127, 130, 131, 132, 134, 135, 136, 139, 140, 143, 144, 145, 147, 148, 149, 153, 154, 155, 156",yes
+pong,1,,,yes,"12, 59, 60, 61",
+pong,2,,,yes,"5, 6, 12",
+pong,3,,,yes,"44, 45, 48, 49, 52, 53",
+pong,4,,,yes,"72, 73, 74, 75, 76, 79, 80, 81, 82, 83",
+pong,5,,,yes,"33, 34, 35, 36, 39, 40, 41, 62",
+pong,6,ambiguities,semantic,yes,"2, 3, 4, 58",no
+pong,7,ambiguities,semantic,yes,"18, 19, 20, 23, 24",no
+pong,8,negative,syntactic,yes,20,yes
+pong,9,numerical_discrepancies,semantic,no,,no
+pong,10,ambiguities,semantic,yes,"7, 66, 67, 68, 69, 133, 134, 135, 136, 137, 138",yes
+pong,11,logical_inconsistencies,semantic,no,,no
+pong,12,subjective_language,lexical,yes,"91, 92, 93, 95, 96, 97, 98, 100, 133, 134, 135, 136, 137, 138",yes
+pong,13,subjective_language,lexical,no,,no
+pong,14,passive_voice,syntactic,yes,"72, 73, 74, 75, 79, 80, 81, 82",yes
+pong,15,ambiguities,semantic,no,,no
+pong,16,optional_parts,lexical,yes,"110, 111",yes
+pong,17,subjective_language,lexical,yes,"114, 115, 116, 117, 118, 119, 120, 121, 122, 123",yes
+pong,18,optional_parts,lexical,yes,"105, 107, 108, 110, 111, 117, 122",yes
+pong,19,vague_pronouns,syntactic,yes,"76, 83",yes
+pong,20,passive_voice,syntactic,no,,no

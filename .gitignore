@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+generated/*.pkl
+.ipynb_checkpoints/
+scratch_*.py
+nb_code.txt
+friend_nb.txt

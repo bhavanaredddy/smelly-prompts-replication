@@ -1,0 +1,10 @@
+detector,gold_type,n,recall,type_hit_rate
+rule_based,ambiguities,15,0.8,0.4
+rule_based,logical_inconsistencies,8,0.625,0.0
+rule_based,negative,5,1.0,1.0
+rule_based,numerical_discrepancies,5,0.6,0.2
+rule_based,optional_parts,5,0.8,0.6
+rule_based,passive_voice,10,1.0,1.0
+rule_based,subjective_language,14,0.6428571428571429,0.35714285714285715
+rule_based,vague_pronouns,5,1.0,1.0
+rule_based,weak_verbs,5,1.0,1.0
