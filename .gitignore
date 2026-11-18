@@ -2,7 +2,9 @@
 __pycache__/
 *.pyc
 generated/*.pkl
+generated/logs/
 .ipynb_checkpoints/
 scratch_*.py
 nb_code.txt
 friend_nb.txt
+submission.csv

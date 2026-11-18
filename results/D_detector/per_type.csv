@@ -8,12 +8,21 @@ rule_based,passive_voice,10,1.0,1.0
 rule_based,subjective_language,14,0.6428571428571429,0.35714285714285715
 rule_based,vague_pronouns,5,1.0,1.0
 rule_based,weak_verbs,5,1.0,1.0
-llm (llama3.2:3b),ambiguities,15,0.2,0.0
-llm (llama3.2:3b),logical_inconsistencies,8,0.375,0.25
-llm (llama3.2:3b),negative,5,0.4,0.0
-llm (llama3.2:3b),numerical_discrepancies,5,0.4,0.2
-llm (llama3.2:3b),optional_parts,5,0.4,0.2
-llm (llama3.2:3b),passive_voice,10,0.2,0.0
-llm (llama3.2:3b),subjective_language,14,0.5714285714285714,0.2857142857142857
-llm (llama3.2:3b),vague_pronouns,5,0.4,0.0
-llm (llama3.2:3b),weak_verbs,5,0.4,0.4
+llm (llama3.1_8b),ambiguities,15,0.26666666666666666,0.06666666666666667
+llm (llama3.1_8b),logical_inconsistencies,8,0.5,0.0
+llm (llama3.1_8b),negative,5,0.2,0.0
+llm (llama3.1_8b),numerical_discrepancies,5,0.2,0.2
+llm (llama3.1_8b),optional_parts,5,1.0,0.8
+llm (llama3.1_8b),passive_voice,10,0.2,0.0
+llm (llama3.1_8b),subjective_language,14,0.5714285714285714,0.2857142857142857
+llm (llama3.1_8b),vague_pronouns,5,0.2,0.0
+llm (llama3.1_8b),weak_verbs,5,0.6,0.4
+llm (llama3.2_3b),ambiguities,15,0.2,0.0
+llm (llama3.2_3b),logical_inconsistencies,8,0.375,0.25
+llm (llama3.2_3b),negative,5,0.4,0.0
+llm (llama3.2_3b),numerical_discrepancies,5,0.4,0.2
+llm (llama3.2_3b),optional_parts,5,0.4,0.2
+llm (llama3.2_3b),passive_voice,10,0.2,0.0
+llm (llama3.2_3b),subjective_language,14,0.5714285714285714,0.2857142857142857
+llm (llama3.2_3b),vague_pronouns,5,0.4,0.0
+llm (llama3.2_3b),weak_verbs,5,0.4,0.4

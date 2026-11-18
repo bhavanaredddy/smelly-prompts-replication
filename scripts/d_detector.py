@@ -145,9 +145,10 @@ def main():
         run_llm(gold, args.model, cache)
 
     detectors = {"rule_based": rule_predictions(gold)}
-    lp = llm_predictions(gold, cache)
-    if lp is not None:
-        detectors[f"llm ({args.model})"] = lp
+    for model_cache in sorted((GENERATED / "detector").glob("*")):
+        lp = llm_predictions(gold, model_cache)
+        if lp is not None:
+            detectors[f"llm ({model_cache.name})"] = lp
 
     summaries, per_types = [], []
     for name, pred in detectors.items():

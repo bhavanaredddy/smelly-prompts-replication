@@ -125,7 +125,7 @@ def main():
     all_req = pd.concat([local_req, a_req], ignore_index=True)
     summary = summarize(all_req)
 
-    out = out_dir("C_local_and_fixer")
+    out = out_dir("C_local_and_fixer", tag)
     summary.to_csv(out / "conditions_summary.csv", index=False)
     local_req.drop(columns=["loc_predicted", "loc_actual"]).to_csv(out / "local_requirement_level.csv", index=False)
 
@@ -210,10 +210,52 @@ def main():
     rep.image(p, out, "conditions")
 
     rep.save(out / "README.md")
+    combine_models()
     print(summary.to_string())
     print(recovery.to_string())
     if not fq.empty:
         print(agg.to_string())
+
+
+def combine_models():
+    """Side-by-side tables for every local model evaluated so far."""
+    root = out_dir("C_local_and_fixer")
+    summaries, recoveries, qualities = [], [], []
+    for d in sorted(p for p in root.iterdir() if p.is_dir()):
+        if (d / "conditions_summary.csv").exists():
+            summaries.append(pd.read_csv(d / "conditions_summary.csv"))
+        if (d / "fixer_recovery.csv").exists():
+            recoveries.append(pd.read_csv(d / "fixer_recovery.csv").assign(model=d.name))
+        if (d / "fixer_text_quality.csv").exists():
+            q = pd.read_csv(d / "fixer_text_quality.csv")
+            qualities.append(q.groupby("mode").agg(
+                changed=("changed", "mean"), drifted=("drifted", "mean"),
+                rule_flags_before=("rule_flags_before", "mean"),
+                rule_flags_after=("rule_flags_after", "mean")).reset_index().assign(model=d.name))
+    if not summaries:
+        return
+    summary = pd.concat(summaries).drop_duplicates(["model", "condition"])
+    summary["condition"] = pd.Categorical(summary["condition"], COND_ORDER, ordered=True)
+    summary = summary.sort_values(["model", "condition"])
+    rep = Report("Step C + smell fixer: all local models")
+    rep.p("One folder per local model holds the details. GPT-4o and Llama-3.1-70B rows are "
+          "the authors' saved runs, for reference. Scores on the 72 smell-able requirements, "
+          "against the original intent.")
+    rep.table(summary[["model", "condition", "acc_smellable_intent", "f1_smellable_intent", "said_yes"]])
+    if recoveries:
+        rec = pd.concat(recoveries)
+        rec = rec[rec.metric == "f1_intent"][["model", "fixer", "clean", "smelly", "fixed",
+                                              "fixed_minus_smelly", "ci_low", "ci_high",
+                                              "share_of_gap_recovered"]]
+        rep.h("Line F1 recovered by the fixer")
+        rep.table(rec)
+        rec.to_csv(root / "all_models_recovery.csv", index=False)
+    if qualities:
+        rep.h("Fixer text quality")
+        rep.table(pd.concat(qualities)[["model", "mode", "changed", "drifted",
+                                        "rule_flags_before", "rule_flags_after"]])
+    summary.to_csv(root / "all_models_summary.csv", index=False)
+    rep.save(root / "README.md")
 
 
 if __name__ == "__main__":

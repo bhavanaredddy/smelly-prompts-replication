@@ -1,0 +1,9 @@
+{
+  "stats": {
+    "seconds": 9519.4,
+    "prompt_tokens": 711,
+    "output_tokens": 378,
+    "done_reason": "stop"
+  },
+  "raw": "{\n  \"requirements\": [\n    {\n      \"id\": 1,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 2,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 3,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 4,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 5,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 6,\n      \"smelly\": true,\n      \"smell_types\": [\"numerical_discrepancies\"]\n    },\n    {\n      \"id\": 7,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 8,\n      \"smelly\": true,\n      \"smell_types\": [\"weak_verbs\"]\n    },\n    {\n      \"id\": 9,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 10,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 11,\n      \"smelly\": true,\n      \"smell_types\": [\"subjective_language\"]\n    },\n    {\n      \"id\": 12,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 13,\n      \"smelly\": true,\n      \"smell_types\": [\"optional_parts\"]\n    },\n    {\n      \"id\": 14,\n      \"smelly\": false,\n      \"smell_types\": []\n    }\n  ]\n}"
+}

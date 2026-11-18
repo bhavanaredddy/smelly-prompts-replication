@@ -1,0 +1,9 @@
+{
+  "stats": {
+    "seconds": 120.2,
+    "prompt_tokens": 754,
+    "output_tokens": 431,
+    "done_reason": "stop"
+  },
+  "raw": "{\n  \"requirements\": [\n    {\n      \"id\": 1,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 2,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 3,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 4,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 5,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 6,\n      \"smelly\": true,\n      \"smell_types\": [\"numerical_discrepancies\"]\n    },\n    {\n      \"id\": 7,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 8,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 9,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 10,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 11,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 12,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 13,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 14,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 15,\n      \"smelly\": false,\n      \"smell_types\": []\n    },\n    {\n      \"id\": 16,\n      \"smelly\": true,\n      \"smell_types\": [\"logical_inconsistencies\", \"numerical_discrepancies\"]\n    }\n  ]\n}"
+}

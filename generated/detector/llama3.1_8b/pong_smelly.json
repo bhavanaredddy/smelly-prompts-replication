@@ -1,0 +1,9 @@
+{
+  "stats": {
+    "seconds": 119.1,
+    "prompt_tokens": 851,
+    "output_tokens": 428,
+    "done_reason": "stop"
+  },
+  "raw": "{\n  \"requirements\": [\n    {\"id\": 1, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 2, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 3, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 4, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 5, \"smelly\": true, \"smell_types\": [\"subjective_language\"]},\n    {\"id\": 6, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 7, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 8, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 9, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 10, \"smelly\": true, \"smell_types\": [\"subjective_language\"]},\n    {\"id\": 11, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 12, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 13, \"smelly\": true, \"smell_types\": [\"subjective_language\"]},\n    {\"id\": 14, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 15, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 16, \"smelly\": true, \"smell_types\": [\"optional_parts\"]},\n    {\"id\": 17, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 18, \"smelly\": true, \"smell_types\": [\"optional_parts\"]},\n    {\"id\": 19, \"smelly\": false, \"smell_types\": []},\n    {\"id\": 20, \"smelly\": false, \"smell_types\": []}\n  ]\n}"
+}
